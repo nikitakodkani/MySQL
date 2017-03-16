@@ -46,6 +46,8 @@ CASE value WHEN [compare_value] THEN result
 [ELSE result] 
 END
 
+*/
+
 Final query:
 
 SELECT CASE             
@@ -58,5 +60,3 @@ SELECT CASE
             ELSE 'Not A Triangle'
         END
 FROM TRIANGLES;
-
-*/
