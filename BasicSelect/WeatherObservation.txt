@@ -85,7 +85,7 @@ REGEXP
 Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
 
 MySql:
-SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '^[AEIOU][A-Z \s]*[AEIOU]$';
+SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '^[AEIOU].*[AEIOU]$';
 OR
 SELECT DISTINCT CITY FROM STATION WHERE UPPER(CITY) REGEXP '^[AEIOU].*[AEIOU]$';
 
@@ -95,4 +95,29 @@ SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '^[AEIOU]' AND CITY REGEXP '
 OR
 SELECT DISTINCT CITY FROM STATION WHERE RIGHT (CITY, 1) IN ('A','E', 'I', 'O', 'U') AND LEFT (CITY,1) in ('A','E', 'I', 'O', 'U');
 
+---query "NOT Condition"
+
+Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+
+MySql:
+
+select distinct city from station where NOT city regexp '^[aeiouAEIOU]' order by city
+
+---query "NOT Condition"
+
+Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+
+select distinct city from station where NOT city regexp '[aeiouAEIOU]$' order by city;
+
+---query "NOT Condition"
+
+Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+
+SELECT DISTINCT CITY FROM STATION WHERE CITY NOT REGEXP '^[AEIOU]' OR CITY NOT REGEXP '[AEIOU]$';
+
+---query "NOT Condition"
+
+Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+
+select distinct city from station where city regexp '^[^aeiou].*[^aeiou]$'
 
